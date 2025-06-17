@@ -163,16 +163,16 @@
         const filteredMatches = allMatches.filter(match => match.known.toLowerCase() === known.toLowerCase());
         setMatches(filteredMatches);
         setSkillsError('');
-        alert(Skills submitted! You know: ${known}, You want to learn: ${learn});
+        alert(`Skills submitted! You know: ${known}, You want to learn: ${learn}`);
         setCurrentPage('dashboard');
       };
 
       const handleSendRequest = (matchId) => {
         setConnectionRequests({ ...connectionRequests, [matchId]: true });
-        alert(Connection request sent to ${matches.find(m => m.id === matchId).name}!);
+        alert(`Connection request sent to ${matches.find(m => m.id === matchId).name}!`);
         setTimeout(() => {
           setConnectedMatches({ ...connectedMatches, [matchId]: true });
-          alert(Request accepted by ${matches.find(m => m.id === matchId).name}! You can now chat.);
+          alert(`Request accepted by ${matches.find(m => m.id === matchId).name}! You can now chat.`);
         }, 2000);
       };
 
@@ -281,7 +281,7 @@
       const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
         const secs = seconds % 60;
-        return ${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')};
+        return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
       };
 
       React.useEffect(() => {
@@ -343,9 +343,9 @@
         const contentId = Date.now();
         let content;
         if (type === 'pdf') {
-          content = { sender: "You", text: Shared a PDF: StudyGuide_${contentId}.pdf, type: "pdf", contentId };
+          content = {sender: "You", text: `Shared a PDF: StudyGuide_${contentId}.pdf`, type: "pdf", contentId};
         } else {
-          content = { sender: "You", text: Shared a Note: QuickNote_${contentId}.txt, type: "note", contentId };
+          content = { sender: "You", text: `Shared a Note: QuickNote_${contentId}.txt`, type: "note", contentId };
         }
         
         updatedMessages[currentChat.id].push(content);
@@ -356,13 +356,13 @@
         updatedSharedContent[currentChat.id].push({ id: contentId, type, content: type === 'pdf' ? 'Sample PDF content' : 'Sample note content' });
         setSharedContent(updatedSharedContent);
         
-        alert(${type === 'pdf' ? 'PDF' : 'Note'} shared successfully!);
+        alert(`${type === 'pdf' ? 'PDF' : 'Note'} shared successfully!`);
       };
 
       const handleViewSharedContent = (contentId, chatId) => {
         const content = sharedContent[chatId]?.find(item => item.id === contentId);
         if (content) {
-          alert(Viewing ${content.type}: ${content.content});
+          alert(`Viewing ${content.type}: ${content.content}`);
         }
       };
 
@@ -396,7 +396,7 @@
 
         const newCall = { match, date, time };
         setScheduledCalls([...scheduledCalls, newCall]);
-        alert(Call scheduled with ${match} on ${date} at ${time});
+        alert(`Call scheduled with ${match} on ${date} at ${time}`);
         setCallForm({ match: '', date: '', time: '' });
         setCallFormError('');
       };
@@ -531,7 +531,7 @@
                           <div key={match.id} className="border p-3 rounded-md flex items-center space-x-3">
                             <img
                               src={match.profilePic}
-                              alt={${match.name}'s profile}
+                              alt={`${match.name}'s profile`}
                               className="w-10 h-10 rounded-full object-cover"
                             />
                             <div className="flex-1">
